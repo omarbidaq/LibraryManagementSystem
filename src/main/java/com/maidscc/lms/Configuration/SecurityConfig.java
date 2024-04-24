@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/**")
                         .authenticated()// Require authentication for any endpoint under '/api/'
-                        .requestMatchers(HttpMethod.GET,"/api/**").hasAnyRole("User")
+                        .requestMatchers(HttpMethod.GET,"/api/**").hasRole("User")
                         .anyRequest().hasRole("ADMIN")  // Allow all other requests without authentication
                 )
                 .httpBasic(httpBasic -> {}); // Use HTTP Basic Authentication
@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .build();
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder.encode("admin"))
+                .password(passwordEncoder.encode("123"))
                 .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
