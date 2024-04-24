@@ -1,12 +1,13 @@
-Prerequisites:
+Caution: Try to read the file in the Code Preview to be more simpler and readable
 
+Prerequisites:
 
 Before you begin, ensure you have the following installed:
 
 Java JDK 20 or newer
 
-
 PostgreSQL 16 or newer
+
 Maven
 
 Navigate to src/main/resources/ and open the application.properties file. Set your PostgreSQL database connection properties:
