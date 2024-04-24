@@ -1,4 +1,4 @@
-Prerequisites
+Prerequisites:
 Before you begin, ensure you have the following installed:
 
 Java JDK 20 or newer
