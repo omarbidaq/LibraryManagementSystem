@@ -1,7 +1,11 @@
 Prerequisites:
+
+
 Before you begin, ensure you have the following installed:
 
 Java JDK 20 or newer
+
+
 PostgreSQL 16 or newer
 Maven
 
