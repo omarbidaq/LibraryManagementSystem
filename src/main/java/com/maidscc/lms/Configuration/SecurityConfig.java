@@ -1,7 +1,9 @@
 package com.maidscc.lms.Configuration;
+
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -13,16 +15,20 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@SecurityScheme(
+        name = "basicAuth",  // This is the reference used in the @SecurityRequirement annotation
+        type = SecuritySchemeType.HTTP,
+        scheme = "basic"
+)
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/**")
-                        .authenticated()// Require authentication for any endpoint under '/api/'
-                        .requestMatchers(HttpMethod.GET,"/api/**").hasRole("User")
-                        .anyRequest().hasRole("ADMIN")  // Allow all other requests without authentication
+                        //.requestMatchers(HttpMethod.GET,"/api/**").hasRole("User") // Allows GET requests for users
+                        //.requestMatchers("/api/**").hasRole("ADMIN") // Restricts all non-GET API requests to admins
+                        .anyRequest().authenticated()// Requires authentication for any other requests
                 )
                 .httpBasic(httpBasic -> {}); // Use HTTP Basic Authentication
         return http.build();
@@ -48,5 +54,3 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user, admin);
     }
 }
-
-
