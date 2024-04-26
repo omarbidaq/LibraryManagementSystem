@@ -17,11 +17,6 @@ The app is using Hibernate so No need for a SQL script.
 
 Our APIs uses Basic Auth for authentication.
 To interact with any secured endpoints, you must include a valid Basic Auth in the Authorization header of your HTTP request.
-The app contains 2 user Roles 1-USER  2 -ADMIN
-The user Role has access to GET methods only. 
-while Admin has access to all endpoints.(You can check SecurityConfig class inside the Configuration package)
-The user role credentials are {"username": "user","password": "123"} 
-while the admin role credentials are {"username": "user","password": "123"}
 
 
 Using the API:
@@ -39,3 +34,8 @@ PUT /api/books/1: Update a a book with ID.
 PUT /api/patrons/1: Update a a patron with ID.
 Delete /api/books/1: Delete a a book with ID.
 Delete /api/patrons/1: Delete a a patron with ID.
+
+Update*
+Documentation is updated using swagger UI
+you can test endpoint at the following link:
+http://localhost:8080/swagger-ui/swagger-ui/index.html
